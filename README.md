@@ -10,3 +10,12 @@
 2. Search news
 3. Get Trending news
 4. Get user search history
+
+# Featues to implement
+1. Filter
+2. API Rate limit
+3. Admin access to block user
+
+# Project experience
+1. Learnt HTML & a little bit of CSS to implement frontend
+2. Implemented separate modules to deal with news api
