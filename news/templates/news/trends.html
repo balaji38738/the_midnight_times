@@ -9,7 +9,7 @@
         <div class="media-body">
             <div class="article-metadata">
                 <small class="text-muted">{{ article.author }}</small>
-                <small class="text-muted">{{ article.publishedAt|date:"F d, Y" }}</small>
+                <small class="text-muted">{{ article.date_published }}</small>
             </div>
             <h2><a class="article-title" href="#" onclick='window.open("{{ article.article_url }}");return false;'>{{ article.title }}</a></h2>
             <p class="article-content">{{ article.description }}</p>
