@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'news/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="{% url 'trends' %}">Trends</a>
+        <a href="#about">Admin</a>
+        <a href="{% url 'search-history' %}">History</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+        <a href="#dashboard">Dashboard</a>
+        <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-refresh"></span> Refresh
+        </a>
+        <div class="search-container">
+            <form method="POST" action="{% url 'search-news' %}">
+                {% csrf_token %}
+                <input type="text" placeholder="Search.." name="search_query">
+                <button type="submit">Submit</button>
+            </form>
+            <i class='fas fa-filter'></i>
+        </div>
+    </div>
+    <main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+        {% block content %}{% endblock %}
+        </div>
+    </div>
+    </main>
+</body>
+</html>
