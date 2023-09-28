@@ -9,11 +9,23 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
+    """
+      Home view
+    """
     return render(request, "news/base.html")
 
 
 @login_required
 def news(request):
+    """
+        Method to handle user search request
+        Renders html page based upon request method.
+            Parameters:
+                   request
+            Returns:
+                html page for news
+    """
+
     if request.method == "POST":
         keyword = request.POST.get("search_query", "")
         get_news = GetNews()
@@ -38,6 +50,15 @@ def news(request):
 
 
 def trends(request):
+    """
+        Method to get the trending articles
+        Renders trends html page.
+            Parameters:
+                   request
+            Returns:
+                html page for trends
+    """
+
     results = Article.objects.all().values()
     results = list(
         filter(
@@ -55,6 +76,15 @@ def trends(request):
 
 @login_required
 def history(request):
+    """
+        Method to get the user history
+        Renders trends html page.
+            Parameters:
+                   request
+            Returns:
+                html page for user history
+    """
+
     results = Article.objects.filter(user_id=request.user).values()
     key_func = lambda article: article["keyword"]
     results = sorted(results, key=lambda k: k["date_published"])

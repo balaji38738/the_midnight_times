@@ -1,4 +1,8 @@
 from .constants import NEWS_API_ENDPOINT
+"""
+    This module deals with news api
+"""
+
 import os
 import requests
 import logging
